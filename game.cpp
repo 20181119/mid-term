@@ -29,23 +29,8 @@ bool game::init(const char *title, int xpos, int ypos, int width, int height, in
    return false; 
    }
 
-   
-    SDL_Surface* pTempSurface = IMG_Load("Assets/animate-alpha.png");
-    m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
-    SDL_FreeSurface(pTempSurface);
+    m_texturemanager.load("Assets/animate-alpha.png","animate", m_pRenderer);
 
-    m_srRect.w=128;
-    m_srRect.h=82;
-
-    m_srRect.x=0;
-    m_srRect.y=0;
-
-    m_desRect.w=m_srRect.w;
-    m_desRect.h=m_srRect.h;
-
-    m_desRect.x=0;
-    m_desRect.y=0;
-    
 
    m_bRunning = true;
    return true;
@@ -53,13 +38,14 @@ bool game::init(const char *title, int xpos, int ypos, int width, int height, in
 
 void game::update()
 {
-    m_srRect.x=128*((SDL_GetTicks()/100)%6);
+    m_currentframe=((SDL_GetTicks()/100)%6);
 }
 
 void game::render()
 {
   SDL_RenderClear(m_pRenderer);
-  SDL_RenderCopy(m_pRenderer, m_pTexture, &m_srRect, &m_desRect);
+  m_texturemanager.draw("animate", 0, 0, 128, 82, m_pRenderer);
+  m_texturemanager.drawframe("animate", 100, 100, 128, 82, 0, m_currentframe, m_pRenderer);
   SDL_RenderPresent(m_pRenderer);
 }
 bool game::running()

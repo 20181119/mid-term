@@ -1,5 +1,6 @@
 #pragma once
 #include "SDL.h"
+#include "texturemanager.h"
 
 class game 
 {
@@ -14,10 +15,12 @@ bool running();
 void handleEvents();
 void clean();
 
+texturemanager m_texturemanager;
+int m_currentframe;
+
 
 SDL_Texture* m_pTexture;
-SDL_Rect m_srRect;
-SDL_Rect m_desRect;
+
 
 private:
 SDL_Window* m_pWindow;
