@@ -3,6 +3,7 @@
 #include "texturemanager.h"
 #include "gameobject.h"
 #include "player.h"
+#include <vector>
 class game 
 {
 public:
@@ -18,8 +19,7 @@ void clean();
 
 int m_currentframe;
 
-gameobject m_go;
-player m_p;
+vector<gameobject*> m_gameobjects;
 
 private:
 SDL_Window* m_pWindow;
