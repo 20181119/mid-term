@@ -1,18 +1,27 @@
 #include <SDL.h>
 #include "game.h"
+#include <iostream>
 game* g_game=0;
 int main(int argc, char* args[])
 {
-    g_game=new game();
-    g_game->init("classed SDL", 100, 100, 640,480, 0);
-    
-    while(g_game->running())
+
+  if(game::instance()->init("chapter1", 100, 100, 640,480, false))
+  {
+       while(game::instance()->running())
     {
-      g_game->handleEvents();
-      g_game->update();
-      g_game->render();
+      game::instance()->handleEvents();
+      game::instance()->update();
+      game::instance()->render();
       SDL_Delay(10);
     }
-      g_game->clean();
+  }
+  else
+  {
+     std::cout<<"game init failure"<<SDL_GetError()<<"\n";
+    return -1;
+  }
+    
+    
+      game::instance()->clean();
     return 0;
 }

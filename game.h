@@ -6,9 +6,26 @@
 #include <vector>
 class game 
 {
+
+  private:
+    game() {}
+    static game* s_pinstance;
+
 public:
-game() {}
 ~game() {}
+
+static game* instance()
+{
+  if(s_pinstance==0)
+ {
+  s_pinstance=new game();
+  return s_pinstance;
+ }
+return s_pinstance;
+}
+
+
+SDL_Renderer* getRenderer() const{return m_pRenderer;}
 
 bool init(const char* title, int xpos, int ypos , int height, int width, int flags);
 void render();
