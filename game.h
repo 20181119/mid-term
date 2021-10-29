@@ -15,6 +15,10 @@ void handleEvents();
 void clean();
 
 
+SDL_Texture* m_pTexture;
+SDL_Rect m_srRect;
+SDL_Rect m_desRect;
+
 private:
 SDL_Window* m_pWindow;
 SDL_Renderer* m_pRenderer;
