@@ -2,7 +2,6 @@
 #include "SDL.h"
 #include "texturemanager.h"
 #include "gameobject.h"
-#include "player.h"
 #include <vector>
 class game 
 {
@@ -33,8 +32,6 @@ void update();
 bool running();
 void handleEvents();
 void clean();
-
-int m_currentframe;
 
 vector<gameobject*> m_gameobjects;
 

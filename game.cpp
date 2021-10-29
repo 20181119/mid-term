@@ -1,5 +1,8 @@
 #include "game.h"
 #include "SDL_image.h"
+#include "loadParams.h"
+#include "player.h"
+#include "enemy.h"
 
 game* game::s_pinstance=0;
 
@@ -37,15 +40,8 @@ bool game::init(const char *title, int xpos, int ypos, int width, int height, in
       return false; 
     }
 
-
-  gameobject* m_go=new gameobject();
-  gameobject* m_player=new player();
-
-m_go->load(100, 100, 128, 82, "animate");
-m_player->load(300, 300, 128, 82, "animate");
-
-m_gameobjects.push_back(m_go);
-m_gameobjects.push_back(m_player);
+m_gameobjects.push_back(new player(new loadParams(100,100,128,82,"animate")));
+m_gameobjects.push_back(new enemy(new loadParams(100,100,128,82,"animate")));
 
 
 
@@ -65,11 +61,10 @@ void game::render()
 {
   SDL_RenderClear(m_pRenderer);
    
-  for(int i=0;i<m_gameobjects.size();i++)
+  for(int i=0;i!=m_gameobjects.size();i++)
    {
-       m_gameobjects[i]->draw(m_pRenderer);
+      m_gameobjects[i]->draw();
    }
-
   SDL_RenderPresent(m_pRenderer);
 }
 bool game::running()

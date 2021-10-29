@@ -1,6 +1,9 @@
 #include <SDL.h>
 #include "game.h"
 #include <iostream>
+
+//https://www.loom.com/share/7490693dad5343f08fb2bf3f923921e8
+//녹화영상링크입니다.
 game* g_game=0;
 int main(int argc, char* args[])
 {
