@@ -25,6 +25,7 @@ bool init(const char* title, int xpos, int ypos , int height, int width, int fla
     return true;
 }
 
+
 void render()
 {
    SDL_RenderClear(g_pRenderer);
