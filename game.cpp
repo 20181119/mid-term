@@ -35,6 +35,9 @@ bool game::init(const char *title, int xpos, int ypos, int width, int height, in
       return false; 
     }
 
+    m_go.load(100, 100, 128, 82, "animate");
+    m_p.load(300, 300, 128, 82, "animate");
+
 
    m_bRunning = true;
    return true;
@@ -42,14 +45,15 @@ bool game::init(const char *title, int xpos, int ypos, int width, int height, in
 
 void game::update()
 {
-    m_currentframe=((SDL_GetTicks()/100)%6);
+    m_go.update();
+    m_p.update();
 }
 
 void game::render()
 {
   SDL_RenderClear(m_pRenderer);
-  texturemanager::instance()->draw("animate", 0, 0, 128, 82, m_pRenderer);
-  texturemanager::instance()->drawframe("animate", 100, 100, 128, 82, 0, m_currentframe, m_pRenderer);
+  m_go.draw(m_pRenderer);
+  m_p.draw(m_pRenderer);
   SDL_RenderPresent(m_pRenderer);
 }
 bool game::running()
