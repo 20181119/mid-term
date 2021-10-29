@@ -5,8 +5,17 @@
 using namespace std;
 class texturemanager
 {
-  public:
+  private:
     texturemanager(){}
+    static texturemanager* s_pinstance;
+  public:
+  static texturemanager* instance()
+   {
+     if(s_pinstance==0)
+     s_pinstance=new texturemanager();
+     return s_pinstance;
+   }
+    
     ~texturemanager(){}
 
     bool load(string fileName, string id, SDL_Renderer* pRenderer);

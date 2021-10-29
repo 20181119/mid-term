@@ -1,5 +1,7 @@
 #include "texturemanager.h"
 #include "SDL_image.h"
+
+texturemanager* texturemanager::s_pinstance=0;
 bool texturemanager::load(string fileName, string id, SDL_Renderer* pRenderer)
 {
   SDL_Surface* pTempSurface = IMG_Load(fileName.c_str());

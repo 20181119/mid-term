@@ -15,12 +15,7 @@ bool running();
 void handleEvents();
 void clean();
 
-texturemanager m_texturemanager;
 int m_currentframe;
-
-
-SDL_Texture* m_pTexture;
-
 
 private:
 SDL_Window* m_pWindow;

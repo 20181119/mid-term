@@ -1,5 +1,6 @@
 #include "game.h"
 #include "SDL_image.h"
+
 bool game::init(const char *title, int xpos, int ypos, int width, int height, int flags)
 {
       if (SDL_Init(SDL_INIT_EVERYTHING) == 0) 
@@ -29,7 +30,10 @@ bool game::init(const char *title, int xpos, int ypos, int width, int height, in
    return false; 
    }
 
-    m_texturemanager.load("Assets/animate-alpha.png","animate", m_pRenderer);
+    if(!texturemanager::instance()->load("Assets/animate-alpha.png","animate", m_pRenderer))
+    {
+      return false; 
+    }
 
 
    m_bRunning = true;
@@ -44,8 +48,8 @@ void game::update()
 void game::render()
 {
   SDL_RenderClear(m_pRenderer);
-  m_texturemanager.draw("animate", 0, 0, 128, 82, m_pRenderer);
-  m_texturemanager.drawframe("animate", 100, 100, 128, 82, 0, m_currentframe, m_pRenderer);
+  texturemanager::instance()->draw("animate", 0, 0, 128, 82, m_pRenderer);
+  texturemanager::instance()->drawframe("animate", 100, 100, 128, 82, 0, m_currentframe, m_pRenderer);
   SDL_RenderPresent(m_pRenderer);
 }
 bool game::running()
