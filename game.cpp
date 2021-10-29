@@ -30,11 +30,13 @@ bool game::init(const char *title, int xpos, int ypos, int width, int height, in
    }
 
    
-    SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/rider.bmp");
+    SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/animate.bmp");
     m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
     SDL_FreeSurface(pTempSurface);
 
-    SDL_QueryTexture(m_pTexture, NULL, NULL, &m_srRect.w, &m_srRect.h);
+    m_srRect.w=128;
+    m_srRect.h=82;
+
     m_srRect.x=0;
     m_srRect.y=0;
 
@@ -51,7 +53,7 @@ bool game::init(const char *title, int xpos, int ypos, int width, int height, in
 
 void game::update()
 {
-
+    m_srRect.x=128*((SDL_GetTicks()/100)%6);
 }
 
 void game::render()
